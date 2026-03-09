@@ -1,0 +1,62 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="40" x2="1200" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#081A2A" />
+      <stop offset="0.55" stop-color="#10273A" />
+      <stop offset="1" stop-color="#1B1F3A" />
+    </linearGradient>
+    <radialGradient id="glowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(230 160) rotate(43) scale(320 280)">
+      <stop stop-color="#22D3EE" stop-opacity="0.45" />
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1020 580) rotate(32) scale(350 260)">
+      <stop stop-color="#FB923C" stop-opacity="0.35" />
+      <stop offset="1" stop-color="#FB923C" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="300" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0E2234" stop-opacity="0.94" />
+      <stop offset="1" stop-color="#0C1A2B" stop-opacity="0.88" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)" />
+  <ellipse cx="230" cy="160" rx="320" ry="280" fill="url(#glowA)" />
+  <ellipse cx="1020" cy="580" rx="350" ry="260" fill="url(#glowB)" />
+
+  <rect x="40" y="36" width="1200" height="648" rx="28" fill="#0A1625" fill-opacity="0.45" stroke="#2D5D86" stroke-opacity="0.45" />
+
+  <text x="86" y="98" fill="#E9FCFF" font-size="40" font-family="Space Grotesk, Segoe UI, sans-serif" font-weight="700">
+    Product Scope Lab: 3D Model Intelligence
+  </text>
+  <text x="88" y="132" fill="#9FB6C3" font-size="20" font-family="Space Grotesk, Segoe UI, sans-serif">
+    Интерактивная лаборатория просмотра и анализа инженерных моделей
+  </text>
+
+  <rect x="82" y="178" width="290" height="460" rx="22" fill="url(#card)" stroke="#3A6D8E" stroke-opacity="0.4" />
+  <text x="112" y="224" fill="#D8F5FF" font-size="24" font-family="Space Grotesk, Segoe UI, sans-serif" font-weight="600">
+    Model Catalog
+  </text>
+  <rect x="106" y="252" width="242" height="90" rx="14" fill="#12324A" stroke="#51D4E6" stroke-opacity="0.5" />
+  <rect x="106" y="354" width="242" height="90" rx="14" fill="#122A40" stroke="#355D7C" stroke-opacity="0.45" />
+  <rect x="106" y="456" width="242" height="90" rx="14" fill="#122A40" stroke="#355D7C" stroke-opacity="0.45" />
+
+  <rect x="398" y="178" width="560" height="460" rx="22" fill="url(#card)" stroke="#3A6D8E" stroke-opacity="0.4" />
+  <text x="430" y="224" fill="#D8F5FF" font-size="24" font-family="Space Grotesk, Segoe UI, sans-serif" font-weight="600">
+    Interactive Viewport
+  </text>
+  <rect x="430" y="248" width="496" height="358" rx="18" fill="#091524" stroke="#3A6D8E" stroke-opacity="0.5" />
+  <ellipse cx="680" cy="430" rx="154" ry="110" fill="#1B3B5A" />
+  <path d="M558 430C558 364 614 312 682 312C750 312 804 366 804 430C804 494 750 548 682 548C614 548 558 496 558 430Z" fill="#1D5E7D" />
+  <circle cx="682" cy="430" r="52" fill="#2DA9CF" fill-opacity="0.62" />
+
+  <rect x="980" y="178" width="218" height="460" rx="22" fill="url(#card)" stroke="#3A6D8E" stroke-opacity="0.4" />
+  <text x="1008" y="224" fill="#D8F5FF" font-size="24" font-family="Space Grotesk, Segoe UI, sans-serif" font-weight="600">
+    Analysis
+  </text>
+  <rect x="1008" y="252" width="162" height="18" rx="8" fill="#2F4A64" />
+  <rect x="1008" y="286" width="144" height="18" rx="8" fill="#2F4A64" />
+  <rect x="1008" y="320" width="168" height="18" rx="8" fill="#2F4A64" />
+  <rect x="1008" y="354" width="130" height="18" rx="8" fill="#2F4A64" />
+  <rect x="1008" y="388" width="176" height="18" rx="8" fill="#2F4A64" />
+  <rect x="1008" y="524" width="162" height="44" rx="12" fill="#E9782C" />
+</svg>
