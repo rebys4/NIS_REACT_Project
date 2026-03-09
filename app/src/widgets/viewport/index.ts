@@ -1,0 +1,1 @@
+export { ViewportWidget } from '@/widgets/viewport/ui/viewport-widget'

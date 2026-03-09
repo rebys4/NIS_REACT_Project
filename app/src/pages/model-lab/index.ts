@@ -1,0 +1,1 @@
+export { ModelLabPage } from '@/pages/model-lab/ui/model-lab-page'

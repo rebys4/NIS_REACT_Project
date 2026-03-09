@@ -1,0 +1,1 @@
+export { ControlPanelWidget } from '@/widgets/control-panel/ui/control-panel-widget'

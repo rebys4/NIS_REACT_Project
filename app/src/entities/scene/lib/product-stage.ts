@@ -1,0 +1,1 @@
+export const PRODUCT_STAGE_READY = 'placeholder'

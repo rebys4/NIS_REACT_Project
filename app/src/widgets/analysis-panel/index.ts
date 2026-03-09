@@ -1,0 +1,1 @@
+export { AnalysisPanelWidget } from '@/widgets/analysis-panel/ui/analysis-panel-widget'
