@@ -49,6 +49,7 @@ const DEFAULT_VISUAL_STATE: ViewerVisualState = {
 
 interface ProductStageOptions {
   container: HTMLDivElement
+  onGeometryReady?: (geometry: BufferGeometry) => void
 }
 
 export class ProductStage {
@@ -70,9 +71,11 @@ export class ProductStage {
   private model: Mesh<BufferGeometry, MeshStandardMaterial> | null = null
   private boundsHelper: Box3Helper | null = null
   private visualState: ViewerVisualState = DEFAULT_VISUAL_STATE
+  private onGeometryReady?: (geometry: BufferGeometry) => void
 
   constructor(options: ProductStageOptions) {
     this.container = options.container
+    this.onGeometryReady = options.onGeometryReady
 
     this.scene = new Scene()
     this.scene.background = new Color('#081726')
@@ -143,6 +146,7 @@ export class ProductStage {
     this.updateBoundsHelper()
     this.applyVisualState(this.visualState)
     this.focusCameraOnModel()
+    this.onGeometryReady?.(geometry)
   }
 
   updateVisualState(state: ViewerVisualState) {

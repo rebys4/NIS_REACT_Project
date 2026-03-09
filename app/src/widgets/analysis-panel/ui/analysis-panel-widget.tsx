@@ -23,6 +23,16 @@ const MetricRow = ({ label, value }: { label: string; value: string }) => {
   )
 }
 
+const getComplexityBand = (index: number): string => {
+  if (index < 5) {
+    return 'Low'
+  }
+  if (index < 12) {
+    return 'Medium'
+  }
+  return 'High'
+}
+
 export const AnalysisPanelWidget = () => {
   const selectedModelId = useViewerStore((state) => state.selectedModelId)
   const metrics = useViewerStore((state) => state.metrics)
@@ -67,6 +77,10 @@ export const AnalysisPanelWidget = () => {
             <MetricRow
               label="Complexity index"
               value={formatNumber(metrics.complexityIndex, 2)}
+            />
+            <MetricRow
+              label="Complexity band"
+              value={getComplexityBand(metrics.complexityIndex)}
             />
           </Stack>
         ) : (

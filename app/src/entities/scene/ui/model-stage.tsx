@@ -2,6 +2,7 @@ import { Box } from '@mui/material'
 import { useEffect, useRef } from 'react'
 
 import { getModelPreset } from '@/entities/model/model/catalog'
+import { analyzeGeometry } from '@/entities/model/model/analyze-geometry'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 import {
   type ViewerVisualState,
@@ -22,6 +23,7 @@ export const ModelStage = () => {
   const showAxes = useViewerStore((state) => state.showAxes)
   const showBounds = useViewerStore((state) => state.showBounds)
   const renderScale = useViewerStore((state) => state.renderScale)
+  const setMetrics = useViewerStore((state) => state.setMetrics)
 
   const preset = getModelPreset(selectedModelId)
 
@@ -32,6 +34,9 @@ export const ModelStage = () => {
 
     const stage = new ProductStage({
       container: containerRef.current,
+      onGeometryReady: (geometry) => {
+        setMetrics(analyzeGeometry(geometry))
+      },
     })
     stageRef.current = stage
 
@@ -39,7 +44,7 @@ export const ModelStage = () => {
       stage.dispose()
       stageRef.current = null
     }
-  }, [])
+  }, [setMetrics])
 
   useEffect(() => {
     stageRef.current?.setModel(selectedModelId, detailLevel, preset.baseColor)

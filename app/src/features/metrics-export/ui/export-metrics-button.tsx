@@ -17,8 +17,15 @@ export const ExportMetricsButton = ({
       return
     }
 
-    const fileName = `${modelId}-analysis-${new Date().toISOString().slice(0, 10)}.json`
-    const blob = new Blob([JSON.stringify(metrics, null, 2)], {
+    const exportedAt = new Date().toISOString()
+    const fileName = `${modelId}-analysis-${exportedAt.slice(0, 10)}.json`
+    const payload = {
+      modelId,
+      exportedAt,
+      metrics,
+    }
+
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
       type: 'application/json',
     })
     const url = URL.createObjectURL(blob)
