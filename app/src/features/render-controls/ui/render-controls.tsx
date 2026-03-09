@@ -21,6 +21,7 @@ import type {
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 
 export const RenderControls = () => {
+  const modelSource = useViewerStore((state) => state.modelSource)
   const detailLevel = useViewerStore((state) => state.detailLevel)
   const lightPreset = useViewerStore((state) => state.lightPreset)
   const materialMood = useViewerStore((state) => state.materialMood)
@@ -70,11 +71,17 @@ export const RenderControls = () => {
           size="small"
           value={detailLevel}
           onChange={handleDetailLevel}
+          disabled={modelSource === 'upload'}
         >
           <ToggleButton value="draft">Draft</ToggleButton>
           <ToggleButton value="balanced">Balanced</ToggleButton>
           <ToggleButton value="fine">Fine</ToggleButton>
         </ToggleButtonGroup>
+        {modelSource === 'upload' ? (
+          <Typography variant="caption" color="text.secondary">
+            Для загруженной модели параметр детализации не применяется.
+          </Typography>
+        ) : null}
       </Stack>
 
       <Stack spacing={1}>

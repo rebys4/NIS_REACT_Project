@@ -1,13 +1,10 @@
 :root {
-  --bg-base: #051624;
-  --bg-glow-a: #1e3a8a;
-  --bg-glow-b: #0d9488;
-  --bg-glow-c: #f97316;
-  --text-main: #ecfeff;
-  --text-muted: #9fb6c3;
+  --bg-base: #f3f5f8;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
   font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
   font-synthesis: none;
-  text-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,55 +23,24 @@ body,
 
 body {
   color: var(--text-main);
-  background:
-    radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--bg-glow-a) 70%, transparent) 0%, transparent 38%),
-    radial-gradient(circle at 82% 24%, color-mix(in srgb, var(--bg-glow-b) 64%, transparent) 0%, transparent 33%),
-    radial-gradient(circle at 56% 86%, color-mix(in srgb, var(--bg-glow-c) 40%, transparent) 0%, transparent 34%),
-    linear-gradient(165deg, #041321 0%, #0a1f2f 52%, #111827 100%);
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
   background-attachment: fixed;
 }
 
 .ambient-shell {
   position: relative;
-  overflow: hidden;
-}
-
-.ambient-shell::before,
-.ambient-shell::after {
-  content: '';
-  pointer-events: none;
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(60px);
-  opacity: 0.25;
-}
-
-.ambient-shell::before {
-  width: 240px;
-  height: 240px;
-  right: -70px;
-  top: -80px;
-  background: #22d3ee;
-}
-
-.ambient-shell::after {
-  width: 190px;
-  height: 190px;
-  left: -60px;
-  bottom: -65px;
-  background: #fb923c;
 }
 
 .float-in {
   opacity: 0;
-  transform: translateY(12px);
-  animation: float-in 620ms ease-out forwards;
+  transform: translateY(6px);
+  animation: float-in 360ms ease-out forwards;
 }
 
 @keyframes float-in {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;

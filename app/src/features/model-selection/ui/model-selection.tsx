@@ -1,24 +1,19 @@
-import {
-  CardActionArea,
-  Chip,
-  Stack,
-  Typography,
-  Box,
-  alpha,
-} from '@mui/material'
+import { CardActionArea, Chip, Stack, Typography, Box } from '@mui/material'
 
 import { MODEL_PRESETS } from '@/entities/model/model/catalog'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 import { GlassCard } from '@/shared/ui/glass-card'
 
 export const ModelSelection = () => {
+  const modelSource = useViewerStore((state) => state.modelSource)
   const selectedModelId = useViewerStore((state) => state.selectedModelId)
   const setSelectedModel = useViewerStore((state) => state.setSelectedModel)
 
   return (
     <Stack spacing={1.4}>
       {MODEL_PRESETS.map((preset, index) => {
-        const isSelected = preset.id === selectedModelId
+        const isSelected =
+          modelSource === 'preset' && preset.id === selectedModelId
 
         return (
           <GlassCard
@@ -27,7 +22,7 @@ export const ModelSelection = () => {
             sx={{
               overflow: 'hidden',
               animationDelay: `${100 + index * 90}ms`,
-              borderColor: isSelected ? alpha(preset.baseColor, 0.8) : undefined,
+              borderColor: isSelected ? 'primary.main' : 'divider',
             }}
           >
             <CardActionArea
@@ -40,9 +35,8 @@ export const ModelSelection = () => {
                     sx={{
                       width: 12,
                       height: 12,
-                      borderRadius: '50%',
+                      borderRadius: 1,
                       backgroundColor: preset.baseColor,
-                      boxShadow: `0 0 12px ${preset.baseColor}`,
                     }}
                   />
                   <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>

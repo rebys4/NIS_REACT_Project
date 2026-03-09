@@ -1,4 +1,3 @@
-import AnalyticsRoundedIcon from '@mui/icons-material/AnalyticsRounded'
 import { Divider, Stack, Typography } from '@mui/material'
 
 import { getModelPreset } from '@/entities/model/model/catalog'
@@ -34,23 +33,34 @@ const getComplexityBand = (index: number): string => {
 }
 
 export const AnalysisPanelWidget = () => {
+  const modelSource = useViewerStore((state) => state.modelSource)
   const selectedModelId = useViewerStore((state) => state.selectedModelId)
+  const uploadedModel = useViewerStore((state) => state.uploadedModel)
   const metrics = useViewerStore((state) => state.metrics)
-  const preset = getModelPreset(selectedModelId)
+
+  const activeModelName =
+    modelSource === 'upload' && uploadedModel
+      ? uploadedModel.name
+      : getModelPreset(selectedModelId).title
+
+  const exportModelId =
+    modelSource === 'upload' && uploadedModel
+      ? uploadedModel.name.replace(/\.[^/.]+$/, '')
+      : selectedModelId
 
   return (
-    <GlassCard className="ambient-shell" sx={{ p: 2 }}>
+    <GlassCard sx={{ p: 2 }}>
       <Stack spacing={1.5}>
-        <Stack direction="row" spacing={1} alignItems="center">
-          <AnalyticsRoundedIcon color="primary" />
-          <Typography variant="h6">Analysis Panel</Typography>
-        </Stack>
+        <Typography variant="h6">Анализ геометрии</Typography>
 
         <Typography variant="body2" color="text.secondary">
-          Целевая модель: {preset.title}
+          Модель: {activeModelName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Источник: {modelSource === 'upload' ? 'Загруженная пользователем' : 'Каталог пресетов'}
         </Typography>
 
-        <Divider sx={{ borderColor: 'rgba(125, 211, 252, 0.22)' }} />
+        <Divider />
 
         {metrics ? (
           <Stack spacing={1}>
@@ -85,11 +95,11 @@ export const AnalysisPanelWidget = () => {
           </Stack>
         ) : (
           <Typography color="text.secondary" variant="body2">
-            Метрики появятся после рендера сцены на следующем чекпоинте.
+            Метрики появятся сразу после отрисовки модели.
           </Typography>
         )}
 
-        <ExportMetricsButton metrics={metrics} modelId={selectedModelId} />
+        <ExportMetricsButton metrics={metrics} modelId={exportModelId} />
       </Stack>
     </GlassCard>
   )

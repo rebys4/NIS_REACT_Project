@@ -13,7 +13,9 @@ export const ModelStage = () => {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const stageRef = useRef<ProductStage | null>(null)
 
+  const modelSource = useViewerStore((state) => state.modelSource)
   const selectedModelId = useViewerStore((state) => state.selectedModelId)
+  const uploadedModel = useViewerStore((state) => state.uploadedModel)
   const detailLevel = useViewerStore((state) => state.detailLevel)
   const lightPreset = useViewerStore((state) => state.lightPreset)
   const materialMood = useViewerStore((state) => state.materialMood)
@@ -24,8 +26,6 @@ export const ModelStage = () => {
   const showBounds = useViewerStore((state) => state.showBounds)
   const renderScale = useViewerStore((state) => state.renderScale)
   const setMetrics = useViewerStore((state) => state.setMetrics)
-
-  const preset = getModelPreset(selectedModelId)
 
   useEffect(() => {
     if (!containerRef.current) {
@@ -47,8 +47,21 @@ export const ModelStage = () => {
   }, [setMetrics])
 
   useEffect(() => {
-    stageRef.current?.setModel(selectedModelId, detailLevel, preset.baseColor)
-  }, [selectedModelId, detailLevel, preset.baseColor])
+    if (modelSource !== 'preset') {
+      return
+    }
+
+    const preset = getModelPreset(selectedModelId)
+    stageRef.current?.setPresetModel(preset.id, detailLevel, preset.baseColor)
+  }, [modelSource, selectedModelId, detailLevel])
+
+  useEffect(() => {
+    if (modelSource !== 'upload' || !uploadedModel) {
+      return
+    }
+
+    stageRef.current?.setUploadedModel(uploadedModel.geometry, uploadedModel.baseColor)
+  }, [modelSource, uploadedModel])
 
   useEffect(() => {
     const state: ViewerVisualState = {
@@ -77,14 +90,14 @@ export const ModelStage = () => {
   return (
     <Box
       ref={containerRef}
-      className="ambient-shell float-in"
+      className="float-in"
       sx={{
         width: '100%',
         minHeight: { xs: 320, lg: 560 },
-        borderRadius: 4,
-        border: '1px solid rgba(125, 211, 252, 0.28)',
-        background:
-          'radial-gradient(circle at 22% 20%, rgba(34, 211, 238, 0.22), transparent 48%), linear-gradient(150deg, rgba(15, 23, 42, 0.7), rgba(30, 58, 138, 0.12))',
+        borderRadius: 2.5,
+        border: '1px solid',
+        borderColor: 'divider',
+        backgroundColor: '#f8fafc',
         overflow: 'hidden',
       }}
     />

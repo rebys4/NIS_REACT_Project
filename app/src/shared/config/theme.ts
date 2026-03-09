@@ -2,25 +2,26 @@ import { alpha, createTheme } from '@mui/material/styles'
 
 export const appTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#22d3ee',
-      light: '#67e8f9',
-      dark: '#0891b2',
+      main: '#0f172a',
+      light: '#334155',
+      dark: '#020617',
     },
     secondary: {
-      main: '#fb923c',
-      light: '#fdba74',
-      dark: '#c2410c',
+      main: '#2563eb',
+      light: '#60a5fa',
+      dark: '#1d4ed8',
     },
     background: {
-      default: '#061321',
-      paper: '#0d1e2d',
+      default: '#f3f5f8',
+      paper: '#ffffff',
     },
     text: {
-      primary: '#ecfeff',
-      secondary: '#9fb6c3',
+      primary: '#0f172a',
+      secondary: '#64748b',
     },
+    divider: '#e2e8f0',
   },
   typography: {
     fontFamily: '"Space Grotesk", "Segoe UI", sans-serif',
@@ -44,20 +45,21 @@ export const appTheme = createTheme({
     },
   },
   shape: {
-    borderRadius: 18,
+    borderRadius: 14,
   },
   components: {
     MuiPaper: {
       styleOverrides: {
         root: {
           backgroundImage: 'none',
+          border: '1px solid #e2e8f0',
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 12,
+          borderRadius: 10,
           boxShadow: 'none',
         },
       },
@@ -65,8 +67,15 @@ export const appTheme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: {
-          borderColor: alpha('#67e8f9', 0.35),
-          backgroundColor: alpha('#0f172a', 0.5),
+          borderColor: alpha('#0f172a', 0.12),
+          backgroundColor: alpha('#f8fafc', 1),
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          borderColor: '#e2e8f0',
         },
       },
     },
