@@ -17,7 +17,7 @@ import type {
   DetailLevel,
   LightPreset,
   MaterialMood,
-} from '@/entities/model/model/types'
+} from '@/entities/model/types'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 
 export const RenderControls = () => {
@@ -71,7 +71,6 @@ export const RenderControls = () => {
           size="small"
           value={detailLevel}
           onChange={handleDetailLevel}
-          disabled={modelSource === 'upload'}
         >
           <ToggleButton value="draft">Draft</ToggleButton>
           <ToggleButton value="balanced">Balanced</ToggleButton>
@@ -79,7 +78,7 @@ export const RenderControls = () => {
         </ToggleButtonGroup>
         {modelSource === 'upload' ? (
           <Typography variant="caption" color="text.secondary">
-            Для загруженной модели параметр детализации не применяется.
+            Для загруженной модели детализация управляет уровнем упрощения сетки.
           </Typography>
         ) : null}
       </Stack>

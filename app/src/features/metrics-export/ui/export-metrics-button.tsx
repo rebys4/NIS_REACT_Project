@@ -1,7 +1,7 @@
 import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded'
 import { Button } from '@mui/material'
 
-import type { ModelMetrics } from '@/entities/model/model/types'
+import type { ModelMetrics } from '@/entities/model/types'
 
 interface ExportMetricsButtonProps {
   metrics: ModelMetrics | null

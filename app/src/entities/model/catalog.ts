@@ -1,4 +1,4 @@
-import type { ModelPreset } from '@/entities/model/model/types'
+import type { ModelPreset } from '@/entities/model/types'
 
 export const MODEL_PRESETS: ModelPreset[] = [
   {

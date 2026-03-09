@@ -1,7 +1,8 @@
-export { getModelPreset, MODEL_PRESETS } from '@/entities/model/model/catalog'
-export { createModelGeometry } from '@/entities/model/model/create-geometry'
-export { analyzeGeometry } from '@/entities/model/model/analyze-geometry'
-export { loadUploadedModel } from '@/entities/model/model/load-uploaded-model'
+export { getModelPreset, MODEL_PRESETS } from '@/entities/model/catalog'
+export { createModelGeometry } from '@/entities/model/create-geometry'
+export { createUploadedGeometryDetail } from '@/entities/model/create-uploaded-geometry-detail'
+export { analyzeGeometry } from '@/entities/model/analyze-geometry'
+export { loadUploadedModel } from '@/entities/model/load-uploaded-model'
 export type {
   DetailLevel,
   LightPreset,
@@ -11,4 +12,4 @@ export type {
   ModelPreset,
   UploadedModel,
   UploadModelFormat,
-} from '@/entities/model/model/types'
+} from '@/entities/model/types'

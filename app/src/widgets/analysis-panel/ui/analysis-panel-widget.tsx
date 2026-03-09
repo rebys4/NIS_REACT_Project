@@ -1,6 +1,6 @@
-import { Divider, Stack, Typography } from '@mui/material'
+import { Divider, Stack, Tooltip, Typography } from '@mui/material'
 
-import { getModelPreset } from '@/entities/model/model/catalog'
+import { getModelPreset } from '@/entities/model/catalog'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 import { ExportMetricsButton } from '@/features/metrics-export'
 import { formatNumber } from '@/shared/lib/format-number'
@@ -48,14 +48,31 @@ export const AnalysisPanelWidget = () => {
       ? uploadedModel.name.replace(/\.[^/.]+$/, '')
       : selectedModelId
 
+  const longTextSx = {
+    width: '100%',
+    minWidth: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    overflowWrap: 'anywhere',
+    wordBreak: 'break-word',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
+  } as const
+
   return (
     <GlassCard sx={{ p: 2 }}>
       <Stack spacing={1.5}>
         <Typography variant="h6">Анализ геометрии</Typography>
 
         <Typography variant="body2" color="text.secondary">
-          Модель: {activeModelName}
+          Модель:
         </Typography>
+        <Tooltip title={activeModelName} placement="top-start">
+          <Typography variant="body2" color="text.secondary" sx={longTextSx}>
+            {activeModelName}
+          </Typography>
+        </Tooltip>
         <Typography variant="body2" color="text.secondary">
           Источник: {modelSource === 'upload' ? 'Загруженная пользователем' : 'Каталог пресетов'}
         </Typography>

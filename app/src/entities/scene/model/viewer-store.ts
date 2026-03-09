@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import { MODEL_PRESETS } from '@/entities/model/model/catalog'
+import { MODEL_PRESETS } from '@/entities/model/catalog'
 import type {
   DetailLevel,
   LightPreset,
@@ -8,7 +8,7 @@ import type {
   ModelSource,
   ModelMetrics,
   UploadedModel,
-} from '@/entities/model/model/types'
+} from '@/entities/model/types'
 
 interface ViewerState {
   modelSource: ModelSource

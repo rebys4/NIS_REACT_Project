@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
 import { useEffect, useRef } from 'react'
 
-import { getModelPreset } from '@/entities/model/model/catalog'
-import { analyzeGeometry } from '@/entities/model/model/analyze-geometry'
+import { getModelPreset } from '@/entities/model/catalog'
+import { analyzeGeometry } from '@/entities/model/analyze-geometry'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 import {
   type ViewerVisualState,
@@ -60,8 +60,12 @@ export const ModelStage = () => {
       return
     }
 
-    stageRef.current?.setUploadedModel(uploadedModel.geometry, uploadedModel.baseColor)
-  }, [modelSource, uploadedModel])
+    stageRef.current?.setUploadedModel(
+      uploadedModel.geometry,
+      uploadedModel.baseColor,
+      detailLevel,
+    )
+  }, [modelSource, uploadedModel, detailLevel])
 
   useEffect(() => {
     const state: ViewerVisualState = {

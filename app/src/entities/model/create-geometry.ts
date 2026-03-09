@@ -7,7 +7,7 @@ import {
   Vector2,
 } from 'three'
 
-import type { DetailLevel } from '@/entities/model/model/types'
+import type { DetailLevel } from '@/entities/model/types'
 
 const detailToIndex: Record<DetailLevel, number> = {
   draft: 0,

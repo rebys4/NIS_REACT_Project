@@ -1,6 +1,6 @@
 import { CardActionArea, Chip, Stack, Typography, Box } from '@mui/material'
 
-import { MODEL_PRESETS } from '@/entities/model/model/catalog'
+import { MODEL_PRESETS } from '@/entities/model/catalog'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 import { GlassCard } from '@/shared/ui/glass-card'
 

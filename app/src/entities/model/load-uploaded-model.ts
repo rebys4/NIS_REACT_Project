@@ -1,9 +1,9 @@
-import { BufferGeometry, Color, Mesh, Object3D, Vector3 } from 'three'
+import { BufferGeometry, Color, Object3D, Vector3 } from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
 import { STLLoader } from 'three/addons/loaders/STLLoader.js'
 
-import type { UploadModelFormat, UploadedModel } from '@/entities/model/model/types'
+import type { UploadModelFormat, UploadedModel } from '@/entities/model/types'
 
 const SUPPORTED_FORMATS: UploadModelFormat[] = ['obj', 'stl', 'glb']
 
@@ -27,8 +27,13 @@ const getFirstMeshGeometry = (root: Object3D): BufferGeometry => {
       return
     }
 
-    if (child instanceof Mesh && child.geometry) {
-      const geometryClone = child.geometry.clone()
+    const candidate = child as Object3D & {
+      geometry?: BufferGeometry
+      isMesh?: boolean
+    }
+
+    if (candidate.geometry?.isBufferGeometry) {
+      const geometryClone = candidate.geometry.clone()
       geometryClone.applyMatrix4(child.matrixWorld)
       extractedGeometry = geometryClone
     }
@@ -96,10 +101,29 @@ const parseGlbGeometry = async (buffer: ArrayBuffer): Promise<BufferGeometry> =>
   return getFirstMeshGeometry(gltf.scene)
 }
 
+const sanitizeObjContent = (content: string): string => {
+  return content
+    .split(/\r?\n/)
+    .filter((line) => {
+      const trimmedLine = line.trimStart()
+
+      // Some CAD exporters add non-standard tokens (vc/vp) that OBJLoader cannot parse.
+      return !trimmedLine.startsWith('vc ') && !trimmedLine.startsWith('vp ')
+    })
+    .join('\n')
+}
+
 const parseObjGeometry = async (content: string): Promise<BufferGeometry> => {
   const loader = new OBJLoader()
-  const root = loader.parse(content)
-  return getFirstMeshGeometry(root)
+
+  try {
+    const root = loader.parse(content)
+    return getFirstMeshGeometry(root)
+  } catch {
+    const sanitizedContent = sanitizeObjContent(content)
+    const root = loader.parse(sanitizedContent)
+    return getFirstMeshGeometry(root)
+  }
 }
 
 const parseStlGeometry = async (buffer: ArrayBuffer): Promise<BufferGeometry> => {

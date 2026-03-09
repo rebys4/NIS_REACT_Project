@@ -5,10 +5,11 @@ import {
   Button,
   Divider,
   Stack,
+  Tooltip,
   Typography,
 } from '@mui/material'
 
-import { loadUploadedModel } from '@/entities/model/model/load-uploaded-model'
+import { loadUploadedModel } from '@/entities/model/load-uploaded-model'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 
 export const ModelUpload = () => {
@@ -51,6 +52,18 @@ export const ModelUpload = () => {
     }
   }
 
+  const longTextSx = {
+    width: '100%',
+    minWidth: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    overflowWrap: 'anywhere',
+    wordBreak: 'break-word',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
+  } as const
+
   return (
     <Stack spacing={1.2}>
       <input
@@ -78,8 +91,16 @@ export const ModelUpload = () => {
         <>
           <Divider />
           <Stack spacing={0.7}>
-            <Typography variant="body2">Загружено: {uploadedModel.name}</Typography>
-            <Stack direction="row" spacing={1}>
+            <Typography variant="body2" color="text.secondary">
+              Загружено:
+            </Typography>
+            <Tooltip title={uploadedModel.name} placement="top-start">
+              <Typography variant="body2" sx={longTextSx}>
+                {uploadedModel.name}
+              </Typography>
+            </Tooltip>
+
+            <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
               <Button
                 size="small"
                 variant={modelSource === 'upload' ? 'contained' : 'outlined'}

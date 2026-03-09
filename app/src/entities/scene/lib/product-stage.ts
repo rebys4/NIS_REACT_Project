@@ -18,12 +18,13 @@ import {
 } from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
-import { createModelGeometry } from '@/entities/model/model/create-geometry'
+import { createModelGeometry } from '@/entities/model/create-geometry'
+import { createUploadedGeometryDetail } from '@/entities/model/create-uploaded-geometry-detail'
 import type {
   DetailLevel,
   LightPreset,
   MaterialMood,
-} from '@/entities/model/model/types'
+} from '@/entities/model/types'
 
 export interface ViewerVisualState {
   wireframe: boolean
@@ -130,8 +131,8 @@ export class ProductStage {
     this.mountGeometry(geometry, color)
   }
 
-  setUploadedModel(geometry: BufferGeometry, color: string) {
-    const geometryClone = geometry.clone()
+  setUploadedModel(geometry: BufferGeometry, color: string, detailLevel: DetailLevel) {
+    const geometryClone = createUploadedGeometryDetail(geometry, detailLevel)
     geometryClone.computeVertexNormals()
     geometryClone.center()
 

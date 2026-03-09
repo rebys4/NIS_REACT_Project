@@ -1,6 +1,6 @@
 import { BufferAttribute, BufferGeometry, Vector3 } from 'three'
 
-import type { ModelMetrics } from '@/entities/model/model/types'
+import type { ModelMetrics } from '@/entities/model/types'
 
 const safeRound = (value: number): number => {
   if (!Number.isFinite(value)) {

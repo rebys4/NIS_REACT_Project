@@ -1,7 +1,7 @@
 import ViewInArRoundedIcon from '@mui/icons-material/ViewInArRounded'
 import { Chip, Stack, Typography } from '@mui/material'
 
-import { getModelPreset } from '@/entities/model/model/catalog'
+import { getModelPreset } from '@/entities/model/catalog'
 import { ModelStage } from '@/entities/scene/ui/model-stage'
 import { useViewerStore } from '@/entities/scene/model/viewer-store'
 import { GlassCard } from '@/shared/ui/glass-card'
