@@ -19,8 +19,6 @@ npm install
 npm run dev
 ```
 
-Приложение будет доступно на `http://localhost:5173`.
-
 Дополнительные команды:
 
 ```bash
@@ -31,4 +29,4 @@ npm run preview
 
 ## Скриншот стартовой страницы
 
-![Скриншот стартовой страницы](./docs/start-page-screenshot.svg)
+![Скриншот стартовой страницы](./docs/start-page.png)
